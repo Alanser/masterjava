@@ -34,11 +34,51 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link Project }
+     * 
+     */
+    public Project createProject() {
+        return new Project();
+    }
+
+    /**
      * Create an instance of {@link Payload }
      * 
      */
     public Payload createPayload() {
         return new Payload();
+    }
+
+    /**
+     * Create an instance of {@link UserGroup }
+     * 
+     */
+    public UserGroup createUserGroup() {
+        return new UserGroup();
+    }
+
+    /**
+     * Create an instance of {@link UserGroup.Members }
+     * 
+     */
+    public UserGroup.Members createUserGroupMembers() {
+        return new UserGroup.Members();
+    }
+
+    /**
+     * Create an instance of {@link Project.Groups }
+     * 
+     */
+    public Project.Groups createProjectGroups() {
+        return new Project.Groups();
+    }
+
+    /**
+     * Create an instance of {@link Group }
+     * 
+     */
+    public Group createGroup() {
+        return new Group();
     }
 
     /**
@@ -66,11 +106,35 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link Payload.Projects }
+     * 
+     */
+    public Payload.Projects createPayloadProjects() {
+        return new Payload.Projects();
+    }
+
+    /**
+     * Create an instance of {@link Payload.UserGroups }
+     * 
+     */
+    public Payload.UserGroups createPayloadUserGroups() {
+        return new Payload.UserGroups();
+    }
+
+    /**
      * Create an instance of {@link CityType }
      * 
      */
     public CityType createCityType() {
         return new CityType();
+    }
+
+    /**
+     * Create an instance of {@link UserGroup.Members.Member }
+     * 
+     */
+    public UserGroup.Members.Member createUserGroupMembersMember() {
+        return new UserGroup.Members.Member();
     }
 
     /**
