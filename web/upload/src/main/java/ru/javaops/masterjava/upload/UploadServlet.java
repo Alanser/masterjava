@@ -1,6 +1,8 @@
 package ru.javaops.masterjava.upload;
 
 import org.thymeleaf.context.WebContext;
+import ru.javaops.masterjava.persist.DBIProvider;
+import ru.javaops.masterjava.persist.dao.UserDao;
 import ru.javaops.masterjava.persist.model.User;
 
 import javax.servlet.ServletException;
@@ -30,6 +32,7 @@ public class UploadServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        int chunkSize = Integer.parseInt(req.getParameter("chunkSize"));
         final WebContext webContext = new WebContext(req, resp, req.getServletContext(), req.getLocale());
 
         try {
@@ -38,8 +41,11 @@ public class UploadServlet extends HttpServlet {
             if (filePart.getSize() == 0) {
                 throw new IllegalStateException("Upload file have not been selected");
             }
+            if (chunkSize < 1) {
+                throw new IllegalStateException("Chunk size must be > 0");
+            }
             try (InputStream is = filePart.getInputStream()) {
-                List<User> users = userProcessor.process(is);
+                List<User> users = userProcessor.process(is, chunkSize);
                 webContext.setVariable("users", users);
                 engine.process("result", webContext, resp.getWriter());
             }
